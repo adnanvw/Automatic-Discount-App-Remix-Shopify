@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id          String    @id
+  shop        String
+  state       String
+  isOnline    Boolean   @default(false)
+  scope       String?
+  expires     DateTime?
+  accessToken String
+  userId      BigInt?
+}
+
+model Discount {
+  id                      Int       @id @default(autoincrement())
+  discountTitle           String
+  customerBuyProduct      String
+  customerGetProduct      String
+  customerBuyProductName  String
+  customerGetProductName  String
+  discountTypePercentage  Boolean
+  discountTypeFixed       Boolean
+  discountValue           String
+  discountEndDate         DateTime?
+  discountId              String
+  customerBuyProductPrice String
+  customerGetProductPrice String
+  shop                    String
+}
