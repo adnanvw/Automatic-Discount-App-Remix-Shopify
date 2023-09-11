@@ -1,4 +1,4 @@
-import db from "../db.server.js";
+import { discountModel } from "~/db.server";
 
 export const deleteDiscount = async (graphql, data) => {
 
@@ -27,11 +27,7 @@ export const deleteDiscount = async (graphql, data) => {
         const data = await response.json();
         const errors = data.data.discountAutomaticDelete.userErrors
         if (!errors.length) {
-            await db.discount.delete({
-                where: {
-                    id: docId
-                }
-            })
+            await discountModel.findByIdAndDelete(docId)
             return true
         } else {
             console.log("error", errors)

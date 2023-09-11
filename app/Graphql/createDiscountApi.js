@@ -1,6 +1,6 @@
-import db from "../db.server.js";
+import { discountModel } from "~/db.server"
 
-export const createDiscount = async (graphql, data,shop) => {
+export const createDiscount = async (graphql, data, shop) => {
 
   const { discountTitle, customerBuyProduct, customerGetProduct, customerGetProductName, customerBuyProductName, discountType, discountValue, discountEndDate, customerGetProductPrice, customerBuyProductPrice } = data.data
 
@@ -120,25 +120,14 @@ export const createDiscount = async (graphql, data,shop) => {
       }
     )
 
-    const data = await response.json();
-    const errors = data.data.discountAutomaticBxgyCreate.userErrors
+    const dataAPI = await response.json();
+    const errors = dataAPI.data.discountAutomaticBxgyCreate.userErrors
     if (!errors.length) {
-      await db.discount.create({
-        data: {
-          discountTitle: discountTitle,
-          customerBuyProduct: customerBuyProduct,
-          customerGetProduct: customerGetProduct,
-          customerBuyProductName: customerBuyProductName,
-          customerGetProductName: customerGetProductName,
-          customerBuyProductPrice: customerBuyProductPrice,
-          customerGetProductPrice: customerGetProductPrice,
-          discountTypePercentage: discountType.percentage,
-          discountTypeFixed: discountType.fixed,
-          discountValue: discountValue,
-          discountEndDate: discountEndDate? new Date(discountEndDate):null,
-          discountId: data.data.discountAutomaticBxgyCreate.automaticDiscountNode.id,
-          shop:shop 
-        },
+      await discountModel.create({
+        ...data.data,
+        discountId: dataAPI.data.discountAutomaticBxgyCreate.automaticDiscountNode.id,
+        shop: shop
+
       })
       return true
     } else {

@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-// import db from "../db.server";
+
 import { authenticate } from "../shopify.server";
 
 export const loader = async ({request}) => {

@@ -1,5 +1,5 @@
 import { authenticate } from "../shopify.server";
-import db from "../db.server";
+import { shopModel } from "~/db.server";
 
 export const action = async ({ request }) => {
   const { topic, shop, session } = await authenticate.webhook(request);
@@ -7,14 +7,14 @@ export const action = async ({ request }) => {
   switch (topic) {
     case "APP_UNINSTALLED":
       if (session) {
-        await db.session.deleteMany({ where: { shop } });
+        await shopModel.deleteMany({ shop });
       }
       break;
     case "CUSTOMERS_DATA_REQUEST":
     case "CUSTOMERS_REDACT":
     case "SHOP_REDACT":
     case "ORDERS_PAID":
-      console.log("lll",topic)
+      console.log("lll", topic)
     default:
       throw new Response("Unhandled webhook topic", { status: 404 });
   }

@@ -3,6 +3,11 @@ import { socket } from "./socket.js"
 
 const App = () => {
 
+
+
+
+
+
   useEffect(() => {
 
     socket.on("connect_error", (err) => {
@@ -13,15 +18,27 @@ const App = () => {
       console.log('connected', socket.id);
     });
 
-    socket.emit("customEvent","Hello World Buddy")
-
-    socket.on("responseEvent",(payload)=>{
-       console.log("***Payload socket",payload)
+    socket.on("addDiscountedProduct", (payload) => {
+      fetch(`https://${Shopify.shop}/cart/add.js`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          'id': payload,
+          'quantity': 1
+        })
+      }).then(() => {
+        // window.location.replace(`https://${shopName}/cart`)
+        window.location.reload()
+      }).catch((error) => {
+        console.log("error", error)
+      })
     })
   }, [])
 
   return (
-    <div>App</div>
+    <></>
   )
 }
 

@@ -1,11 +1,10 @@
-import { PrismaClient } from "@prisma/client";
 
-const prisma = global.prisma || new PrismaClient();
+import mongoConnect from "./MONGODB/connection";
+import discountModel from "./MONGODB/models/discountData";
+import shopModel from "./MONGODB/models/ShopModel";
 
-if (process.env.NODE_ENV !== "production") {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient();
-  }
+
+mongoConnect()
+export {
+  discountModel, shopModel
 }
-
-export default prisma;

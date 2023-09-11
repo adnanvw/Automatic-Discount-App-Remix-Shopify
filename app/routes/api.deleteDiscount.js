@@ -1,6 +1,6 @@
 import { json } from "@remix-run/node";
 
-import db from "../db.server";
+
 import { authenticate } from "../shopify.server";
 import { deleteDiscount } from "~/Graphql/deleteDiscountApi";
 

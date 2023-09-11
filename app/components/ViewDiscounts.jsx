@@ -35,11 +35,12 @@ const ViewDiscounts = () => {
 
   const handleUpdate=(index)=>{
     const data=discountData[index]
+    // console.log("lll",data)
     reduxDispatch(setUpdateOfferData({...data}))
   }
   
   const handleDeleteModal=(index)=>{
-    const docId=discountData[index].id
+    const docId=discountData[index]._id
     const discountId=discountData[index].discountId
      reduxDispatch(openModal({content:"This action cannot be undone.",status:true,btnContent:"Delete",action:"delete",id:{docId,discountId}}))
   }
@@ -97,7 +98,7 @@ const ViewDiscounts = () => {
                       <td >{item?.discountTitle}</td>
                       <td>{item?.customerBuyProductName}</td>
                       <td>{item?.customerGetProductName}</td>
-                      <td>{item?.discountTypePercentage ? "Percentage Type" : "Fixed Amount Type"}</td>
+                      <td>{item?.discountType.percentage ? "Percentage Type" : "Fixed Amount Type"}</td>
                       <td>{item?.discountValue}</td>
                       <td>{item?.discountEndDate? new Date(item.discountEndDate).toLocaleDateString():"Endless"}</td>
                       <td>

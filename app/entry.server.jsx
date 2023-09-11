@@ -37,33 +37,6 @@ export default async function handleRequest(
 
           responseHeaders.set("Content-Type", "text/html");
 
-          // const server = http.createServer();
-          // const io = new SocketIOServer(server, {
-          //   cors: {
-          //     origin: "*",
-          //   }
-          // });
-
-          // io.on("connection", (socket) => {
-          //   console.log("Socket connected:", socket.id);
-
-          //   socket.on("customEvent", (data) => {
-          //     console.log("Custom event received:", data);
-
-          //     // You can emit responses to this socket event
-          //     socket.emit("responseEvent", { message: "Response from server" });
-          //   });
-
-          //   socket.on("disconnect", () => {
-          //     console.log("Socket disconnected:", socket.id);
-          //   });
-          // });
-
-          // // Start the HTTP server on the desired port (e.g., 3000)
-          // server.listen(3000, () => {
-          //   console.log("Socket.IO server listening on port 3000");
-          // });
-
           resolve(
             new Response(body, {
               headers: responseHeaders,
@@ -86,3 +59,28 @@ export default async function handleRequest(
     setTimeout(abort, ABORT_DELAY);
   });
 }
+
+
+
+const server = http.createServer();
+const io = new SocketIOServer(server, {
+  cors: {
+    origin: "*",
+  }
+});
+
+export let socketConnected
+io.on("connection", (socket) => {
+  console.log("Socket connected:", socket.id);
+
+  socketConnected = socket
+
+  socket.on("disconnect", () => {
+    console.log("Socket disconnected:", socket.id);
+  });
+});
+
+// Start the HTTP server on the desired port (e.g., 3000)
+server.listen(3000, () => {
+  console.log("Socket.IO server listening on port 3000");
+});

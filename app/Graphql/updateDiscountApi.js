@@ -1,4 +1,4 @@
-import db from "../db.server.js";
+import { discountModel } from "~/db.server";
 
 export const updateDiscount = async (graphql, data,shop) => {
 
@@ -124,28 +124,14 @@ export const updateDiscount = async (graphql, data,shop) => {
       }
     )
 
-    const data = await response.json();
-    const errors = data.data.discountAutomaticBxgyUpdate.userErrors
+    const dataAPI = await response.json();
+    const errors = dataAPI.data.discountAutomaticBxgyUpdate.userErrors
     if (!errors.length) {
-      await db.discount.update({
-        data: {
-          discountTitle: discountTitle,
-          customerBuyProduct: customerBuyProduct,
-          customerGetProduct: customerGetProduct,
-          customerBuyProductName: customerBuyProductName,
-          customerGetProductName: customerGetProductName,
-          customerBuyProductPrice: customerBuyProductPrice,
-          customerGetProductPrice: customerGetProductPrice,
-          discountTypePercentage: discountType.percentage,
-          discountTypeFixed: discountType.fixed,
-          discountValue: discountValue,
-          discountEndDate: discountEndDate? new Date(discountEndDate):null,
-          discountId: data.data.discountAutomaticBxgyUpdate.automaticDiscountNode.id,
-          shop:shop 
-        },
-        where:{
-            id:docId
-        }
+      await discountModel.findByIdAndUpdate(docId,
+        { 
+        ...data.data,
+        discountId: dataAPI.data.discountAutomaticBxgyUpdate.automaticDiscountNode.id,
+        shop:shop 
       })
       return true
     } else {

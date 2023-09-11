@@ -83,18 +83,7 @@ const DiscountSettings = ({switchTabAfterCreateOrUpdate}) => {
         }
       case "setForUpdate":
         return {
-          discountTitle: action.value.discountTitle,
-          customerBuyProduct: action.value.customerBuyProduct,
-          customerGetProduct: action.value.customerGetProduct,
-          customerBuyProductName: action.value.customerBuyProductName,
-          customerGetProductName: action.value.customerGetProductName,
-          customerBuyProductPrice: action.value.customerBuyProductPrice,
-          customerGetProductPrice: action.value.customerGetProductPrice,
-          discountType: {
-            percentage: action.value.discountTypePercentage,
-            fixed: action.value.discountTypeFixed 
-          },
-          discountValue: action.value.discountValue,
+         ...action.value,
           discountEndDate: action.value.discountEndDate ? action.value.discountEndDate.split('T')[0]:null,
         }
       default:
@@ -155,7 +144,7 @@ const DiscountSettings = ({switchTabAfterCreateOrUpdate}) => {
        bodyVar={
            data:discountState,
            discountId:updateOfferData.discountId,
-           docId:updateOfferData.id
+           docId:updateOfferData._id
        }
     } else {
       bodyVar = {

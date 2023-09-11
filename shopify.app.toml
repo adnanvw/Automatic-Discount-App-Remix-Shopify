@@ -2,18 +2,18 @@
 
 name = "discount-remix"
 client_id = "5a8f064bf48edda334af03c2444d1196"
-application_url = "https://pledge-removal-neil-essex.trycloudflare.com"
+application_url = "https://gathering-chronicle-soul-extraordinary.trycloudflare.com"
 embedded = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products,write_discounts,read_themes,write_orders,read_inventory"
+scopes = "write_products,write_discounts,read_themes,write_orders,read_inventory,read_gift_cards,read_locations"
 
 [auth]
 redirect_urls = [
-  "https://pledge-removal-neil-essex.trycloudflare.com/auth/callback",
-  "https://pledge-removal-neil-essex.trycloudflare.com/auth/shopify/callback",
-  "https://pledge-removal-neil-essex.trycloudflare.com/api/auth/callback"
+  "https://gathering-chronicle-soul-extraordinary.trycloudflare.com/auth/callback",
+  "https://gathering-chronicle-soul-extraordinary.trycloudflare.com/auth/shopify/callback",
+  "https://gathering-chronicle-soul-extraordinary.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
