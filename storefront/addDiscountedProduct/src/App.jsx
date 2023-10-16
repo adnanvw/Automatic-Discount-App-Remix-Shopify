@@ -25,7 +25,7 @@ const App = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          'id': payload,
+          'id': payload.split("/")[4],
           'quantity': 1
         })
       }).then(() => {

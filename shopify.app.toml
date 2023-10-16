@@ -2,18 +2,18 @@
 
 name = "discount-remix"
 client_id = "5a8f064bf48edda334af03c2444d1196"
-application_url = "https://gathering-chronicle-soul-extraordinary.trycloudflare.com"
+application_url = "https://collaborative-determining-expo-institution.trycloudflare.com"
 embedded = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products,write_discounts,read_themes,write_orders,read_inventory,read_gift_cards,read_locations"
+scopes = "write_products,write_discounts,read_themes,write_orders,read_inventory,read_gift_cards,read_locations,read_markets"
 
 [auth]
 redirect_urls = [
-  "https://gathering-chronicle-soul-extraordinary.trycloudflare.com/auth/callback",
-  "https://gathering-chronicle-soul-extraordinary.trycloudflare.com/auth/shopify/callback",
-  "https://gathering-chronicle-soul-extraordinary.trycloudflare.com/api/auth/callback"
+  "https://collaborative-determining-expo-institution.trycloudflare.com/auth/callback",
+  "https://collaborative-determining-expo-institution.trycloudflare.com/auth/shopify/callback",
+  "https://collaborative-determining-expo-institution.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

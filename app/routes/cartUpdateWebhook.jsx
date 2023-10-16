@@ -18,15 +18,19 @@ export const action = async ({ request }) => {
         filterArray.push(item.variant_id)
         totalDiscount += Number(item.total_discount)
       }
+
+     
+
       if(totalDiscount !==0){
-        return
+        return null
       }else{
           let ruleArray=[]
           for(let variant of filterArray){
               const ruleObj= await discountModel.findOne({customerBuyProduct:`gid://shopify/ProductVariant/${variant}`})
               ruleObj && ruleArray.push(ruleObj);
           }
-       socketConnected.emit("addDiscountedProduct", ruleArray[0].customerGetProduct)
+        
+          ruleArray.length && socketConnected.emit("addDiscountedProduct", ruleArray[0]?.customerGetProduct);
       }
       break;
     default:
