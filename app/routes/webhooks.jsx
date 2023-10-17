@@ -8,7 +8,7 @@ export const action = async ({ request }) => {
     case "APP_UNINSTALLED":
       if (session) {
         await shopModel.deleteMany({ shop });
-      }
+      } 
       break;
     case "CUSTOMERS_DATA_REQUEST":
     case "CUSTOMERS_REDACT":

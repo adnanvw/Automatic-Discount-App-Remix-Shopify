@@ -2,7 +2,7 @@
 
 name = "discount-remix"
 client_id = "5a8f064bf48edda334af03c2444d1196"
-application_url = "https://collaborative-determining-expo-institution.trycloudflare.com"
+application_url = "https://gamma-rm-admitted-villas.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products,write_discounts,read_themes,write_orders,read_inventory
 
 [auth]
 redirect_urls = [
-  "https://collaborative-determining-expo-institution.trycloudflare.com/auth/callback",
-  "https://collaborative-determining-expo-institution.trycloudflare.com/auth/shopify/callback",
-  "https://collaborative-determining-expo-institution.trycloudflare.com/api/auth/callback"
+  "https://gamma-rm-admitted-villas.trycloudflare.com/auth/callback",
+  "https://gamma-rm-admitted-villas.trycloudflare.com/auth/shopify/callback",
+  "https://gamma-rm-admitted-villas.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
